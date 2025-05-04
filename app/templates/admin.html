@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ludagri - Admin</title>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo_ludagri.png') }}" alt="Logo" height="100"><br>
+    <h1>Interface Admin</h1>
+    <form method="get">
+        <input type="text" name="reference" placeholder="Entrer une référence" value="{{ reference }}">
+        <button type="submit">Rechercher</button>
+    </form>
+    {% if result %}
+        <h2>Résultat :</h2>
+        <p><strong>Description :</strong> {{ result.description }}</p>
+        <p><strong>Prix :</strong> {{ result.prix }} € (source: {{ result.source }})</p>
+    {% elif reference %}
+        <p>Aucune donnée trouvée pour cette référence.</p>
+    {% endif %}
+</body>
+</html>
