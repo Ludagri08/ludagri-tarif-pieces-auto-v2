@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUD'AGRI - Tarifs Pièces</title>
+    <style>
+        /* Palette LUD'AGRI */
+        :root {
+            --vert-clair: #7ec122;
+            --vert-fonce: #1e5b4d;
+            --gris-clair: #d1d3d4;
+            --blanc: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--vert-fonce);
+            color: var(--blanc);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        img.logo {
+            max-width: 350px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        input[type="text"], input[type="submit"] {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input[type="text"] {
+            background-color: var(--blanc);
+            color: var(--vert-fonce);
+        }
+
+        input[type="submit"] {
+            background-color: var(--vert-clair);
+            color: var(--vert-fonce);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #6aad1d;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            color: var(--gris-clair);
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo_ludagri.png') }}" alt="Logo LUD'AGRI" class="logo">
+
+    <form action="/" method="post">
+        <input type="text" name="reference" placeholder="Entrez une référence de pièce" required>
+        <input type="submit" value="Rechercher">
+    </form>
+
+    {% if result %}
+        <div class="result">{{ result }}</div>
+    {% endif %}
+</body>
+</html>
